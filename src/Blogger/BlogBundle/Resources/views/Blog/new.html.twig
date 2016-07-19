@@ -1,0 +1,82 @@
+{# src/Blogger/BlogBundle/Resouces/views/Blog/show.html.twig #}
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            {% if app.session.started %}
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">Registro Exitoso!</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-{{ type }}">
+                                    {{ flashMessage|trans({}, 'BloggerBlogBundle') }}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <script>
+                    $('#myModal').modal('show')
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+<div class="container">
+    <h2>Creando Nueva Seccion</h2>
+    <br></br>
+
+    <form action="{{ path('blogger_blog_newseccion') }}" method="post" {{ form_enctype(form) }}>
+        <div class="row">
+            <div class="col-md-1">
+                {{ form_errors(form) }}
+                <br></br>
+            </div>
+            {#
+            <div class="col-md-3">
+                {{ form_label(form.categoria.nombre) }}
+                {{ form_widget(form.categoria.nombre) }}
+                <p></p>
+            </div>
+            #}
+            <div class="col-md-8"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                <p></p>
+                {{ form_label(form.content) }}
+                {{ form_widget(form.content) }}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                {% for key, document in form.documents %}
+                <br></br>
+                {{ form_row(document.name) }}
+                <p></p>
+                {{ form_row(document.file) }}
+                {% endfor %}
+                {{ form_rest(form) }}
+                <br></br>
+                <input type="submit" class="btn btn-success" value="Crear"/>
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </form>
+</div>
+{% endblock %}

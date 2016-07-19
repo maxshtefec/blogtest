@@ -1,0 +1,28 @@
+{# src/Blogger/BlogBundle/Resources/views/layout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/bloggerblog/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/bloggerblog/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+
+    <style>
+	  body {
+	    padding-top: 60px;
+	    padding-bottom: 30px;
+	    background: #F5F5F5;
+	  }
+	  @media (max-width: 980px) {
+	    body {
+	      padding-top: 0;
+	    }
+	  }
+	</style>
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('bundles/bloggerblog/js/jquery.js') }}"></script>
+	<script src="{{ asset('bundles/bloggerblog/js/bootstrap.js') }}"></script>
+{% endblock %}

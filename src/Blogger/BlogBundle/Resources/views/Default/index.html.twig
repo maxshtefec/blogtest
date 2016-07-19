@@ -1,0 +1,43 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}
+{{ 'blog.default.index.titulo'|trans({}, 'BloggerBlogBundle') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/bloggerblog/css/blogStyle/style.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body -%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <!-- insert the page content here -->
+		    <h1>TecsPro te da la Bienvenida a SymfonyFuriousBlog</h1>
+		    <p>SymfonyFurious es una <strong>guía rapida</strong> de aprendizaje Symfony2 para el desarrollo de páginas web de una manera <strong>ágil</strong> y <strong>eficás</strong>...</p>
+		    <p>incluye aprendizajes sobre: <strong>HTML5, JAVASCRIPT, JQUERY, PHP</strong> y <strong>CSS</strong>.</p>
+		    <p>visita nuestra pagina para ver nuestros servicios: <a href="http://www.tecspro.com.ar">www.tecspro.com.ar</a>.</p>
+
+		    <h2>Contenido</h2>
+		    <p>a continuación una lista de los Blogs disponibles:</p>
+            {% if blog is empty %}
+                <ul>
+                    <li>No Existen Blogs</li>
+                </ul>
+            {% else %}
+                {% for blogs in blog %}
+                    <ul>
+                        {# Una muestra de como se pasan variables como la id por ejemplo para gestionar vistas... #}
+                        <li><a href="{{ path('BloggerBlogBundle_blog_show', {'id': blogs.id}) }}">{{ blogs.title }}</a></li>
+                    </ul>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>	
+{% endblock %}
+
+

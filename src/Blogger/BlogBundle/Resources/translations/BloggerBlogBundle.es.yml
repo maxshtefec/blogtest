@@ -1,0 +1,28 @@
+blog:
+    default:
+        index:
+            titulo: Bienvenido/a a Symfony FuriousBlog
+        contacto:
+            titulo: Contactanos
+    administracion:
+        login:
+            titulo: Login
+        registro:
+            titulo: Registro
+    blog:
+        new:
+            form:
+                placeholder_titulo: Introduce titulo del blog
+                placeholder_contenido: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum....
+                otro:
+
+flash:
+    create:
+        success: Elemento creado satisfactoriamente.
+        error: Se ha producido un error durante la creación del elemento.
+    update:
+        success: Elemento actualizado satisfactoriamente.
+        error: Se ha producido un error durante la actualización del elemento.
+    delete:
+        success: Elemento eliminado satisfactoriamente.
+        error: Se ha producido un error durante la eliminación del elemento.

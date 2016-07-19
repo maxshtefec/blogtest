@@ -1,0 +1,49 @@
+{# src/Blogger/BlogBundle/Resouces/views/Blog/show.html.twig #}
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <article class="blog">
+                <header>
+                    <div class="date">
+                        <time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('d-m-Y H:m a') }}</time>
+                        <!-- 
+                            ver meses y minutos que no distingue y como poner en español 
+                        -->
+                    </div>
+                    <div>
+                        <p>Por: {{ blog.author }}</p>
+                    </div>
+                    <h2>{{ blog.title }}</h2>
+                </header>
+                {#
+                { if blog.documents is not empty %}
+                    {% for key, document in blog.documents %}
+                        <span class="label label-info">{{ document.name }}</span>
+                        <p></p>
+                        <img src="{{ asset(document.getWebPath) }}" class="img-thumbnail" style="width: 400px; height: 300px;"/>
+                    {% endfor %}
+                {% endif %}
+                #}
+                {% for key, document in blog.documents %}
+                    {% if document.path != "Sin Ubicación" %}
+                        <span class="label label-info">{{ document.name }}</span>
+                        <p></p>
+                        <img src="{{ asset(document.getWebPath) }}" class="img-thumbnail" style="width: 400px; height: 300px;"/>
+                        <br></br>
+                    {% endif %}
+                {% endfor %}
+                <div>
+                    <p>{{ blog.content }}</p>
+                </div>
+            </article>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>  
+{% endblock %}

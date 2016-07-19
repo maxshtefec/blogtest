@@ -1,0 +1,44 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+  <h2>Registrate en SymfonyFuriousBlog</h2>
+  <br></br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+              {#{ form_widget(form) }#}
+              <div class="form-group">
+                {{ form_errors(form) }}
+                <p>
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'example@gmail.com'}}) }}
+                </p>
+                <p>
+                {{ form_label(form.username) }}
+    			{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                </p>
+                <p>
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                </p>
+                <p>
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                </p>
+                {{ form_rest(form) }}
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Acepto las bases y condiciones.
+                    </label>
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn btn-info">{{ 'registration.submit'|trans }}</button>
+            </form>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</div>

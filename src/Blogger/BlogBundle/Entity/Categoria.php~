@@ -1,0 +1,108 @@
+<?php
+// src/Acme/TaskBundle/Entity/Category.php
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CategoriaRepository")
+ * @ORM\Table(name="categoria")
+ */
+class Categoria
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public $id;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    public $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Blogger\BlogBundle\entity\Blog", mappedBy="categorias")
+     * @Assert\Valid
+     */
+    protected $blogs;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return Categoria
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string 
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->blogs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add blogs
+     *
+     * @param \Blogger\BlogBundle\entity\Blog $blogs
+     * @return Categoria
+     */
+    public function addBlog(\Blogger\BlogBundle\entity\Blog $blogs)
+    {
+        $this->blogs[] = $blogs;
+
+        return $this;
+    }
+
+    /**
+     * Remove blogs
+     *
+     * @param \Blogger\BlogBundle\entity\Blog $blogs
+     */
+    public function removeBlog(\Blogger\BlogBundle\entity\Blog $blogs)
+    {
+        $this->blogs->removeElement($blogs);
+    }
+
+    /**
+     * Get blogs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBlogs()
+    {
+        return $this->blogs;
+    }
+}

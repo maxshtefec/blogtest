@@ -1,0 +1,20 @@
+blogger_blog_homepage:
+    path:     /
+    defaults: { _controller: BloggerBlogBundle:Default:index }
+
+blogger_blog_contacto:
+    path:     /contacto
+    defaults: { _controller: BloggerBlogBundle:Default:contacto }
+    requirements:
+        _method:  GET|POST
+
+BloggerBlogBundle_blog_show:
+    pattern:  /{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+blogger_blog_newseccion:
+    path:     /new/seccion
+    defaults: { _controller: BloggerBlogBundle:Blog:new }
